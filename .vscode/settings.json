@@ -1,0 +1,19 @@
+{
+    "git.ignoreLimitWarning": true,
+    // JavaScript style tabs + indentation
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "editor.detectIndentation": false,
+    // Hide files
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        // Hide VSCode settings
+        ".vscode/": true,
+        // Hide node libraries
+        "node_modules/": true
+    }
+}
