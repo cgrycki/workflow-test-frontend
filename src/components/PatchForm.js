@@ -73,9 +73,18 @@ export default class PatchForm extends React.Component {
         packageId: pid
       }),
     })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    //.then(response => response.json())
+    //.then(response => console.log(response))
     .catch(error => alert(error));
+
+    // Set form to empty
+    this.setState({ fields: {
+      id: '',
+      packageId: ''
+    }});
+
+    // Update top level app
+    this.props.onSubmit();
   }
 
   render() {

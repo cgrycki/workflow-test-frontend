@@ -72,9 +72,20 @@ export default class PostForm extends React.Component {
         userEmail: userEmail
       }),
     })
+    // These are valid because the server actually sends a message
     .then(response => response.json())
+    // Likewise, theres a tangible response with the json
     .then(response => console.log(response))
     .catch(error => alert(error));
+
+    // Set form to empty
+    this.setState({ fields: {
+      textField: '',
+      userEmail: ''
+    }});
+
+    // Update top level app
+    this.props.onSubmit();
   }
 
   render() {

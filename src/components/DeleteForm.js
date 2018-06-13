@@ -69,9 +69,17 @@ export default class DeleteForm extends React.Component {
         id: id
       }),
     })
-    .then(response => response.json())
-    .then(response => console.log(response))
+    //.then(response => response.json())
+    //.then(response => console.log(response))
     .catch(error => alert(error));
+
+    // Set form to empty
+    this.setState({ fields: {
+      id: ''
+    }});
+
+    // Update top level app
+    this.props.onSubmit();
   }
 
   render() {
