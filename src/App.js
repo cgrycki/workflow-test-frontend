@@ -17,21 +17,31 @@ class App extends React.Component {
         textField: ''
       },
       errors: {},
-      events: []
+      events: [],
+      rooms: []
     };
 
-    this.apiSync = this.apiSync.bind(this);
+    this.eventSync = this.eventSync.bind(this);
+    this.roomSync = this.roomSync.bind(this);
   };
 
   componentWillMount() {
-    this.apiSync();
+    this.eventSync();
+    this.roomSync();
   }
 
-  async apiSync() {
+  async eventSync() {
     // Use our API's GET to fetch a list of all 'events'
     fetch("/events")
       .then(res => res.json())
       .then(events => this.setState({ events: events }));
+  }
+
+  async roomSync() {
+    // Use our API's GET to fetch a list of all 'events'
+    fetch("/rooms")
+      .then(res => res.json())
+      .then(rooms => this.setState({ rooms: rooms }));
   }
 
   render() {
@@ -45,9 +55,9 @@ class App extends React.Component {
             </div>
 
             <div className="ms-Grid-row">
-              <PostForm onSubmit={() => this.apiSync()}/>
-              <PatchForm onSubmit={() => this.apiSync()}/>
-              <DeleteForm onSubmit={() => this.apiSync()}/>
+              <PostForm onSubmit={() => this.eventSync()}/>
+              <PatchForm onSubmit={() => this.eventSync()}/>
+              <DeleteForm onSubmit={() => this.eventSync()}/>
             </div>
           </div>
         </div>

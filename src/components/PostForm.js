@@ -71,6 +71,7 @@ export default class PostForm extends React.Component {
         textField: textField,
         userEmail: userEmail
       }),
+      credentials: 'include'
     })
     // These are valid because the server actually sends a message
     .then(response => response.json())
