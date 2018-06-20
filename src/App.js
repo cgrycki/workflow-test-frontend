@@ -45,6 +45,10 @@ class App extends React.Component {
   }
 
   render() {
+    let event_ids = this.state.events
+      .map(d => d.id)
+      .sort();
+
     return (
       <div className="App ms-normalize ms-Grid">
         <div className="ms-Grid-row">
@@ -56,8 +60,14 @@ class App extends React.Component {
 
             <div className="ms-Grid-row">
               <PostForm onSubmit={() => this.eventSync()}/>
-              <PatchForm onSubmit={() => this.eventSync()}/>
-              <DeleteForm onSubmit={() => this.eventSync()}/>
+              <PatchForm 
+                ids={event_ids}
+                onSubmit={() => this.eventSync()}
+              />
+              <DeleteForm 
+                ids={event_ids}
+                onSubmit={this.eventSync}
+              />
             </div>
           </div>
         </div>

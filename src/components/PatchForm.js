@@ -4,23 +4,31 @@ import React from 'react';
 // Components
 import TextForm from './TextForm';
 import SubmitButton from './SubmitButton';
+import DropdownID from './DropdownID';
 
 
 export default class PatchForm extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       fields: {
         id: '',
         packageId: ''
       },
-      errors: {}
+      errors: {},
+      ids: props.ids
     };
 
     // Update f(x) needs to be bound to the component or else child will render
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit  = this.onFormSubmit.bind(this);
   };
+
+  componentWillReceiveProps(props) {
+    this.setState({ 
+      ids: props.ids
+    });
+  }
 
   validate() {
     // Gather fields
@@ -49,7 +57,7 @@ export default class PatchForm extends React.Component {
     this.setState({ fields, errors });
   }
 
-  onFormSubmit(evt) {
+  async onFormSubmit(evt) {
     // Prevent leaving the page
     evt.preventDefault();
 
@@ -74,10 +82,17 @@ export default class PatchForm extends React.Component {
       }),
     })
     //.then(response => response.json())
-    //.then(response => console.log(response))
-    .catch(error => alert(error));
+    .then(response => console.log(response))
+    .catch(error => alert(error))
+    .then(() => this.setState({ 
+      fields: {
+        id: '', 
+        packageId: ''
+      }}))
+    .then(() => this.props.onSubmit());
 
     // Set form to empty
+    /*
     this.setState({ fields: {
       id: '',
       packageId: ''
@@ -85,6 +100,7 @@ export default class PatchForm extends React.Component {
 
     // Update top level app
     this.props.onSubmit();
+    */
   }
 
   render() {
@@ -93,12 +109,23 @@ export default class PatchForm extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <fieldset>
             <legend>PATCH</legend>
-            <TextForm
+            
+            {/*<TextForm
               placeholder={'Event ID'}
               name={'id'}
               value={this.state.fields.id}
               onChange={this.onInputChange}
+            />*/}
+
+            <DropdownID
+              placeholder={'Select an ID from dropdown'}
+              label={'Event ID'}
+              name={'id'}
+              value={this.state.fields.id}
+              ids={this.state.ids}
+              onChange={this.onInputChange}
             />
+
             <TextForm
               placeholder={'Package ID'}
               name={'packageId'}
