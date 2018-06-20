@@ -22,6 +22,7 @@
   "homepage": "https://github.com/cgrycki/workflow-test-frontend#readme",
   "proxy": "http://localhost:3001",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "office-ui-fabric-react": "^6.9.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
