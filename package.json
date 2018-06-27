@@ -19,7 +19,6 @@
   "bugs": {
     "url": "https://github.com/cgrycki/workflow-test-frontend/issues"
   },
-  "proxy": "https://workflow-test.public-health.uiowa.edu",
   "dependencies": {
     "dotenv": "^6.0.0",
     "office-ui-fabric-react": "^6.9.0",

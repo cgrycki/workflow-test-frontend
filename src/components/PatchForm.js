@@ -69,7 +69,7 @@ export default class PatchForm extends React.Component {
     if (this.validate()) return;
 
     // Make a POST call to our API
-    let url = '/events/' + id + '/' + pid;
+    let url = process.env.REACT_APP_REDIRECT_URI +'/events/'+ id +'/'+ pid;
     fetch(url, {
       method: 'PATCH',
       headers: {

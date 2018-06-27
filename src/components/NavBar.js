@@ -10,7 +10,8 @@ export default class NavBar extends React.Component {
   }
 
   logout() {
-    fetch('/auth/logout')
+    let url = process.env.REACT_APP_REDIRECT_URI + '/auth/logout';
+    fetch(url)
       .then(res => console.log(res))
       .catch(err => alert(err))
       .then(() => this.setState({
@@ -21,7 +22,9 @@ export default class NavBar extends React.Component {
   render() {
     return (
       <ActionButton
+        disabled={!this.state.loggedIn}
         iconProps={{ iconName: 'UserRemove' }}
+        onClick={() => this.logout()}
       >Logout
       </ActionButton>
     );

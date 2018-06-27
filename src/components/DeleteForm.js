@@ -63,7 +63,7 @@ export default class DeleteForm extends React.Component {
     if (this.validate()) return;
 
     // Make a POST call to our API
-    let url = '/events/' + id;
+    let url = process.env.REACT_APP_REDIRECT_URI +'/events/'+ id;
     fetch(url, {
       method: 'DELETE',
       headers: {
