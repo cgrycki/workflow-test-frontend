@@ -4,7 +4,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 
-require('dotenv').config();
+//require('dotenv').config()
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

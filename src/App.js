@@ -6,6 +6,7 @@ import PostForm from './components/PostForm';
 import PatchForm from './components/PatchForm';
 import DeleteForm from './components/DeleteForm';
 import EventList from './components/EventList';
+import NavBar from './components/NavBar';
 
 
 class App extends React.Component {
@@ -55,7 +56,12 @@ class App extends React.Component {
           <div className="App-Form ms-Grid-col ms-sm12">
 
             <div className="ms-Grid-row">
+              <div className="ms-Grid-col ms-sm11">
                 <h3 className="ms-font-xl ms-fontWeight-regular">Workflow Test</h3>
+              </div>
+              <div className="ms-Grid-col ms-sm1">
+                <NavBar/>
+              </div>
             </div>
 
             <div className="ms-Grid-row">

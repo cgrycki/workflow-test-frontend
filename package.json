@@ -27,6 +27,7 @@
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
     "react-stepzilla": "^4.7.2",
+    "request-promise": "^4.2.2",
     "validator": "^10.3.0"
   }
 }
