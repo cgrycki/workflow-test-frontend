@@ -90,17 +90,6 @@ export default class PatchForm extends React.Component {
         packageId: ''
       }}))
     .then(() => this.props.onSubmit());
-
-    // Set form to empty
-    /*
-    this.setState({ fields: {
-      id: '',
-      packageId: ''
-    }});
-
-    // Update top level app
-    this.props.onSubmit();
-    */
   }
 
   render() {
@@ -109,13 +98,6 @@ export default class PatchForm extends React.Component {
         <form onSubmit={this.onFormSubmit}>
           <fieldset>
             <legend>PATCH</legend>
-            
-            {/*<TextForm
-              placeholder={'Event ID'}
-              name={'id'}
-              value={this.state.fields.id}
-              onChange={this.onInputChange}
-            />*/}
 
             <DropdownID
               placeholder={'Select an ID from dropdown'}

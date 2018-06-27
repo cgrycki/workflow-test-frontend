@@ -2,7 +2,6 @@
 import React from 'react';
 
 // Components
-import TextForm from './TextForm';
 import SubmitButton from './SubmitButton';
 import DropdownID from './DropdownID';
 
