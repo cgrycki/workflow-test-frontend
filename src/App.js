@@ -33,14 +33,16 @@ class App extends React.Component {
 
   async eventSync() {
     // Use our API's GET to fetch a list of all 'events'
-    fetch("/events")
+    let url = process.env.REACT_APP_REDIRECT_URI + '/events';
+    fetch(url)
       .then(res => res.json())
       .then(events => this.setState({ events: events }));
   }
 
   async roomSync() {
     // Use our API's GET to fetch a list of all 'events'
-    fetch("/rooms")
+    let url = process.env.REACT_APP_REDIRECT_URI + '/rooms';
+    fetch(url)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms: rooms }));
   }
