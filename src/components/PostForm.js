@@ -72,7 +72,8 @@ export default class PostForm extends React.Component {
         textField: textField,
         userEmail: userEmail
       }),
-      credentials: 'include'
+      credentials: 'include',
+      mode: 'cors'
     })
     // These are valid because the server actually sends a message
     .then(response => response.json())
