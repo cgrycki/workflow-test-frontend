@@ -75,23 +75,18 @@ export default class PostForm extends React.Component {
         userEmail: userEmail
       }),
       credentials: 'include',
-      mode: 'cors',
-      crossDomain: true
+      //mode: 'cors',
     })
     // These are valid because the server actually sends a message
-    .then(response => response.json())
-    // Likewise, theres a tangible response with the json
+    //.then(response => response.json())
     .then(response => console.log(response))
-    .catch(error => alert(error));
-
-    // Set form to empty
-    this.setState({ fields: {
-      textField: '',
-      userEmail: ''
-    }});
-
-    // Update top level app
-    //this.props.onSubmit();
+    .catch(error => alert(error))
+    .then(() => this.setState({ 
+        fields: {
+          textField: '',
+          userEmail: ''
+      }}));
+    //.then(() => this.props.onSubmit())
   }
 
   render() {
