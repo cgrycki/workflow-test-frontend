@@ -62,7 +62,7 @@ export default class PostForm extends React.Component {
     if (this.validate()) return;
 
     // Make a POST call to our API
-    let url = process.env.REACT_APP_REDIRECT_URI + '/events';
+    let url = process.env.REACT_APP_REDIRECT_URI + '/events?cacheblock=true';
     fetch(url, {
       method: 'POST',
       headers: {
