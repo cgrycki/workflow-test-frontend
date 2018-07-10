@@ -1,5 +1,6 @@
 // Dependencies
 import React from 'react';
+import * as rp from 'request-promise';
 
 // Components
 import TextForm from './TextForm';
@@ -49,7 +50,7 @@ export default class PostForm extends React.Component {
     this.setState({ fields, errors });
   }
 
-  onFormSubmit(evt) {
+  async onFormSubmit(evt) {
     // Prevent leaving the page
     evt.preventDefault();
 
@@ -62,7 +63,7 @@ export default class PostForm extends React.Component {
 
     // Make a POST call to our API
     let url = process.env.REACT_APP_REDIRECT_URI + '/events';
-    fetch(url, {
+    await fetch(url, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -88,7 +89,7 @@ export default class PostForm extends React.Component {
     }});
 
     // Update top level app
-    this.props.onSubmit();
+    //this.props.onSubmit();
   }
 
   render() {
