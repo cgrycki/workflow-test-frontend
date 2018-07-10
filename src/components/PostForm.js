@@ -67,8 +67,8 @@ export default class PostForm extends React.Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json',
-        'Cache-Control': 'no-cache'
+        'Content-Type': 'application/json'
+        //'Cache-Control': 'no-cache'
       },
       body: JSON.stringify({
         textField: textField,
