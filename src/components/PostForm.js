@@ -67,14 +67,16 @@ export default class PostForm extends React.Component {
       method: 'POST',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache'
       },
       body: JSON.stringify({
         textField: textField,
         userEmail: userEmail
       }),
       credentials: 'include',
-      mode: 'cors'
+      mode: 'cors',
+      crossDomain: 
     })
     // These are valid because the server actually sends a message
     .then(response => response.json())
