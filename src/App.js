@@ -34,7 +34,7 @@ class App extends React.Component {
   async eventSync() {
     // Use our API's GET to fetch a list of all 'events'
     let url = process.env.REACT_APP_REDIRECT_URI + '/events';
-    fetch(url)
+    await fetch(url)
       .then(res => res.json())
       .then(events => this.setState({ events: events }));
   }
@@ -42,7 +42,7 @@ class App extends React.Component {
   async roomSync() {
     // Use our API's GET to fetch a list of all 'events'
     let url = process.env.REACT_APP_REDIRECT_URI + '/rooms';
-    fetch(url)
+    await fetch(url)
       .then(res => res.json())
       .then(rooms => this.setState({ rooms: rooms }));
   }
