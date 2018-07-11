@@ -20,6 +20,7 @@
     "url": "https://github.com/cgrycki/workflow-test-frontend/issues"
   },
   "dependencies": {
+    "form-data": "^2.3.2",
     "office-ui-fabric-react": "^6.9.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",

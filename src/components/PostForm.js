@@ -1,6 +1,6 @@
 // Dependencies
 import React from 'react';
-import * as rp from 'request-promise';
+import FormData from 'form-data';
 
 // Components
 import TextForm from './TextForm';
@@ -21,6 +21,7 @@ export default class PostForm extends React.Component {
     // Update f(x) needs to be bound to the component or else child will render
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit  = this.onFormSubmit.bind(this);
+    this.onFormSubmitMultipartFetch = this.onFormSubmitMultipartFetch.bind(this);
   };
 
   validate() {
@@ -75,7 +76,7 @@ export default class PostForm extends React.Component {
         userEmail: userEmail
       }),
       credentials: 'include',
-      //mode: 'cors',
+      mode: 'cors',
     })
     // These are valid because the server actually sends a message
     //.then(response => response.json())
@@ -89,10 +90,45 @@ export default class PostForm extends React.Component {
     //.then(() => this.props.onSubmit())
   }
 
+  onFormSubmitMultipartFetch(evt) {
+    /**
+     * Use multipart form data with fetch
+     */
+    evt.preventDefault();
+    if (this.validate()) return;
+
+    let url = process.env.REACT_APP_REDIRECT_URI + '/events';
+    let form = new FormData();
+    form.append('textField', this.state.fields.textField);
+    form.append('userEmail', this.state.fields.userEmail);
+
+    let options = {
+      method: 'POST',
+      headers: { 
+        //'Content-Type': 'multipart/form-data'
+        //'enctype': 'multipart/form-data'
+      },
+      credentials: 'include',
+      body: form
+    };
+
+    fetch(url, options)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => alert(err))
+      .then(() => this.setState({
+        textField: '',
+        userEmail: ''
+      }));
+  }
+
   render() {
     return (
       <div className="ms-Grid-col ms-sm4 ms-normalize">
-        <form onSubmit={this.onFormSubmit}>
+        <form 
+          onSubmit={this.onFormSubmitMultipartFetch}
+          enctype="multipart/form-data"
+        >
           <fieldset>
             <legend>POST</legend>
             <TextForm
