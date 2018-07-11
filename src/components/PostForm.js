@@ -21,7 +21,6 @@ export default class PostForm extends React.Component {
     // Update f(x) needs to be bound to the component or else child will render
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit  = this.onFormSubmit.bind(this);
-    this.onFormSubmitMultipartFetch = this.onFormSubmitMultipartFetch.bind(this);
   };
 
   validate() {
@@ -51,46 +50,7 @@ export default class PostForm extends React.Component {
     this.setState({ fields, errors });
   }
 
-  onFormSubmit(evt) {
-    // Prevent leaving the page
-    evt.preventDefault();
-
-    // Gather information from our form
-    const textField = this.state.fields.textField;
-    const userEmail = this.state.fields.userEmail;
-
-    // Validate our fields before submitting
-    if (this.validate()) return;
-
-    // Make a POST call to our API
-    let url = process.env.REACT_APP_REDIRECT_URI + '/events';
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-        //'Cache-Control': 'no-cache'
-      },
-      body: JSON.stringify({
-        textField: textField,
-        userEmail: userEmail
-      }),
-      credentials: 'include',
-      mode: 'cors',
-    })
-    // These are valid because the server actually sends a message
-    //.then(response => response.json())
-    .then(response => console.log(response))
-    .catch(error => alert(error))
-    .then(() => this.setState({ 
-        fields: {
-          textField: '',
-          userEmail: ''
-      }}));
-    //.then(() => this.props.onSubmit())
-  }
-
-  onFormSubmitMultipartFetch(evt) {
+  async onFormSubmit(evt) {
     /**
      * Use multipart form data with fetch
      */
@@ -103,31 +63,29 @@ export default class PostForm extends React.Component {
     form.append('userEmail', this.state.fields.userEmail);
 
     let options = {
-      method: 'POST',
-      headers: { 
-        //'Content-Type': 'multipart/form-data'
-        //'enctype': 'multipart/form-data'
-      },
+      method     : 'POST',
       credentials: 'include',
-      body: form
+      body       : form
     };
 
-    fetch(url, options)
+    await fetch(url, options)
       .then(response => response.json())
       .then(response => console.log(response))
       .catch(err => alert(err))
       .then(() => this.setState({
-        textField: '',
-        userEmail: ''
-      }));
+        fields: {
+          textField: '',
+          userEmail: ''
+      }}))
+      .then(() => this.props.onSubmit());
   }
 
   render() {
     return (
       <div className="ms-Grid-col ms-sm4 ms-normalize">
         <form 
-          onSubmit={this.onFormSubmitMultipartFetch}
-          enctype="multipart/form-data"
+          onSubmit={this.onFormSubmit}
+          encType="multipart/form-data"
         >
           <fieldset>
             <legend>POST</legend>
